@@ -1,0 +1,6 @@
+[submodule "basic_test/xdp-tools"]
+	path = basic_test/xdp-tools
+	url = https://github.com/xdp-project/xdp-tools/
+[submodule "basic_test/libbpf"]
+	path = basic_test/libbpf
+	url = https://github.com/libbpf/libbpf/
