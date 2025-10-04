@@ -1,5 +1,5 @@
 namespace Hashing{
     class Hash{
         
-    }
+    };
 }
