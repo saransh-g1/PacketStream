@@ -8,3 +8,7 @@ struct xdp_md {
 	__u32 ingress_ifindex; /* rxq->dev->ifindex */
 	__u32 rx_queue_index;  /* rxq->queue_index  */
 };
+
+struct hdr_cursor {
+	void *pos;
+};
