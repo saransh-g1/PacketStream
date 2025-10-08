@@ -20,6 +20,9 @@
 #include <unistd.h>
 #include <time.h>
 
+#include <argp.h>
+
+
 #include <common_define.hpp>
 
 char LICENSE[] SEC("license") = "Dual BSD/GPL";
@@ -31,6 +34,16 @@ struct option_wrapper {
   bool required;
 };
 
+const char *argp_program_version = "bootstrap 0.0";
+const char *argp_program_bug_address = "<bpf@vger.kernel.org>";
+const char argp_program_doc[] =
+"BPF bootstrap demo application.\n"
+"\n"
+"It traces process start and exits and shows associated \n"
+"information (filename, process duration, PID and PPID, etc).\n"
+"\n"
+"USAGE: ./bootstrap [-d <min-duration-ms>] [-v]\n";
+
 
 static const struct option_wrapper cli_commands[]= {
     {{"redirect-dev",         required_argument,	NULL, 'r' },
@@ -40,6 +53,8 @@ static const struct option_wrapper cli_commands[]= {
 	 "Source MAC address of <dev>", "<mac>", true },
 };
 
+
+
 static int parse_mac(char *str, unsigned char mac[ETH_ALEN])
 {
 
@@ -48,9 +63,11 @@ static int parse_mac(char *str, unsigned char mac[ETH_ALEN])
 void usage(const char *prog_name, const char *doc,
 	   const struct option_wrapper *long_options, bool full);
 
-void parse_cmdline_args(int argc, char **argv,
-			const struct option_wrapper *long_options,
-			struct config *cfg, const char *doc);
+void parse_cmdline_args(int key, char *arg, struct argp_state *state){
+	switch(key){
+		case 'v' : 
+	}
+}
 
 
 
