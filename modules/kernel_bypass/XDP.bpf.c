@@ -1,22 +1,24 @@
-#include "../vmlinux/vmlinux.h"
-
+// #include "../../vmlinux/vmlinux.h"
 #include <linux/if_ether.h>
 #include <linux/if_packet.h>
 #include <linux/ipv6.h>
-#include <linux/icmpv6.h>
 #include <bpf/bpf_helpers.h>
 #include <bpf/bpf_endian.h>
-#include <linux/ip.h>
-#include <netinet/ip_icmp.h>
-
-#include <XDP.hpp>
+// #include <linux/ip.h>
+// #include <netinet/ip_icmp.h>
+#include "XDP.h"
 #include <xdp/parsing_helpers.h>
-#include <xdp/xdp_stats_kern.h>
-
 #include "errno.h"
 
-
 char LICENSE[] SEC("license") = "Dual BSD/GPL";
+
+enum xdp_action {
+	XDP_ABORTED = 0,
+	XDP_DROP,
+	XDP_PASS,
+	XDP_TX,
+	XDP_REDIRECT,
+};
 
 /*
 * current version of the xdp program just redirect the 
